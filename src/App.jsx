@@ -1,8 +1,14 @@
+import { Footer } from "./components/Layouts/Footer"
+import { Header } from "./components/Layouts/Header"
+import AllRoutes from "./routes/Allroutes"
+
 function App() {
   return (
    <>
    <div>
-    <h1 className="text-red-900">Code book project</h1>
+    <Header/>
+      <AllRoutes/>
+      <Footer/>
     </div>
    </>
   )

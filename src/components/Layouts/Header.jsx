@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import Logo from "../../assets/logo.png";
 import { useEffect, useState } from "react";
+import { Search } from "../Sections/Search";
 
 export const Header = () => {
   const [darkMode,setDarkMode] = useState(JSON.parse(localStorage.getItem("darkMode")) ||  false);
+  const [displaySearch,setDisplaySearch] = useState(false);
 
   useEffect(()=>{
     localStorage.setItem("darkMode", JSON.stringify(darkMode))
@@ -29,7 +31,7 @@ export const Header = () => {
           </Link>
           <div className="flex items-cente">
             <span onClick={()=> setDarkMode(!darkMode)} className="bi bi-gear-wide-connected cursor-pointer text-xl text-gray-700 dark:text-white mr-5"></span>
-            <span className="bi bi-search cursor-pointer text-xl text-gray-700 dark:text-white mr-5"></span>
+            <span onClick={()=> setDisplaySearch(!displaySearch)}className="bi bi-search cursor-pointer text-xl text-gray-700 dark:text-white mr-5"></span>
             <Link to="/cart" className="text-gray-700 dark:text-white mr-5">
               <span className="text-2xl bi bi-cart-fill relative">
                 <span className="text-white text-sm absolute -top-1 left-2.5 bg-rose-500 px-1 rounded-full ">
@@ -41,6 +43,7 @@ export const Header = () => {
           </div>
         </div>
       </nav>
+      {displaySearch && <Search setDisplaySearch={setDisplaySearch}/>}
     </header>
   );
 };

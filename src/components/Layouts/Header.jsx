@@ -2,10 +2,12 @@ import { Link } from "react-router-dom";
 import Logo from "../../assets/logo.png";
 import { useEffect, useState } from "react";
 import { Search } from "../Sections/Search";
+import { DropdownLoggedOut } from "../Elements/DropdownLoggedOut";
 
 export const Header = () => {
   const [darkMode,setDarkMode] = useState(JSON.parse(localStorage.getItem("darkMode")) ||  false);
   const [displaySearch,setDisplaySearch] = useState(false);
+  const [dropdown,setDropdown] = useState(false);
 
   useEffect(()=>{
     localStorage.setItem("darkMode", JSON.stringify(darkMode))
@@ -39,11 +41,14 @@ export const Header = () => {
                 </span>
               </span>
             </Link>
-            <span className="bi bi-person-circle cursor-pointer text-xl text-gray-700 dark:text-white mr-5"></span>
+            <span onClick={()=> setDropdown(!dropdown)}className="bi bi-person-circle cursor-pointer text-xl text-gray-700 dark:text-white mr-5"></span>
+            {dropdown && <DropdownLoggedOut/>}
           </div>
         </div>
+      
       </nav>
       {displaySearch && <Search setDisplaySearch={setDisplaySearch}/>}
+      
     </header>
   );
 };

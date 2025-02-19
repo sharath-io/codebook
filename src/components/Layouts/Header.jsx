@@ -3,11 +3,13 @@ import Logo from "../../assets/logo.png";
 import { useEffect, useState } from "react";
 import { Search } from "../Sections/Search";
 import { DropdownLoggedOut } from "../Elements/DropdownLoggedOut";
+import {DropdownLoggedIn} from "../Elements/DropdownLoggedIn";
 
 export const Header = () => {
   const [darkMode,setDarkMode] = useState(JSON.parse(localStorage.getItem("darkMode")) ||  false);
   const [displaySearch,setDisplaySearch] = useState(false);
   const [dropdown,setDropdown] = useState(false);
+  const token = JSON.parse(sessionStorage.getItem("token"));
 
   useEffect(()=>{
     localStorage.setItem("darkMode", JSON.stringify(darkMode))
@@ -42,7 +44,7 @@ export const Header = () => {
               </span>
             </Link>
             <span onClick={()=> setDropdown(!dropdown)}className="bi bi-person-circle cursor-pointer text-xl text-gray-700 dark:text-white mr-5"></span>
-            {dropdown && <DropdownLoggedOut/>}
+            {dropdown && (token ? <DropdownLoggedIn setDropdown={setDropdown}/> : <DropdownLoggedOut setDropdown={setDropdown}/>)}
           </div>
         </div>
       

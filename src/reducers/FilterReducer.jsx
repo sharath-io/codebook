@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const FilterReducer = (state,action) =>  {
+export const filterReducer = (state,action) =>  {
     const {type,payload} = action;
 
     switch(type){

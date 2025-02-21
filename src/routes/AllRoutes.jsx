@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 import {HomePage, Login, ProductsList, Register,CartPage} from '../pages'
 import { ProductDetail } from '../pages/ProductDetail'
 import { ProtectedRoute } from './ProtectedRoute'
+import { OrderPage } from '../pages/Order/OrderPage'
 
 export const AllRoutes =() =>  {
   return (
@@ -14,6 +15,7 @@ export const AllRoutes =() =>  {
          <Route path="login" element={<Login/>}/>
          <Route path="register" element={<Register/>}/>
          <Route path="cart" element={<ProtectedRoute><CartPage/></ProtectedRoute>}/>
+         <Route path="order-summary" element={<ProtectedRoute><OrderPage/></ProtectedRoute>}/>
     </Routes>
   )
 }

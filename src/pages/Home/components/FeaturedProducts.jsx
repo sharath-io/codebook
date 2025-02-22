@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { ProductCard } from '../../../components';
+import { getFeaturedList} from '../../../services';
 export const FeaturedProducts = () => {
   const [products, setProducts] = useState([])
 
-  const getProducts =  async () =>{
-    const response = await fetch("http://localhost:8000/featured_products");
-    const data = await response.json();
-    console.log('from ',data)
-     setProducts(data)
-  } 
-
   useEffect(()=>{
+    const getProducts =  async () =>{
+      const data = await getFeaturedList();
+       setProducts(data)
+    } 
     getProducts()
-},[])
+},[]);
+
   return (
     <section className="my-20">
         <h1 className="text-2xl text-center font-semibold dark:text-slate-100 mb-5 underline underline-offset-8">Featured eBooks</h1>    

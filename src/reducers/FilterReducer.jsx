@@ -1,5 +1,3 @@
-import React from 'react'
-
 export const filterReducer = (state,action) =>  {
     const {type,payload} = action;
 

@@ -1,10 +1,8 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
-import {HomePage, Login, ProductsList, Register,CartPage} from '../pages'
+import {HomePage, Login, ProductsList, Register,CartPage,OrderPage,DashboardPage, PageNotFound } from '../pages'
 import { ProductDetail } from '../pages/ProductDetail'
 import { ProtectedRoute } from './ProtectedRoute'
-import { OrderPage } from '../pages/Order/OrderPage'
-import { DashboardPage } from '../pages/Dashboard/DashboardPage'
 
 export const AllRoutes =() =>  {
   return (
@@ -18,6 +16,8 @@ export const AllRoutes =() =>  {
          <Route path="cart" element={<ProtectedRoute><CartPage/></ProtectedRoute>}/>
          <Route path="order-summary" element={<ProtectedRoute><OrderPage/></ProtectedRoute>}/>
          <Route path="dashboard" element={<ProtectedRoute><DashboardPage/></ProtectedRoute>}/>
+
+         <Route path="*" element={<PageNotFound/>}/>
 
     </Routes>
   )

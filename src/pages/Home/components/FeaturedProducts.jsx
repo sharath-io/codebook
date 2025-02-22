@@ -6,8 +6,13 @@ export const FeaturedProducts = () => {
 
   useEffect(()=>{
     const getProducts =  async () =>{
-      const data = await getFeaturedList();
+      try{
+        const data = await getFeaturedList();
        setProducts(data)
+      }catch(error){
+         toast.error(error.message, {closeButton:true,position:"bottom-center"})
+      }
+      
     } 
     getProducts()
 },[]);

@@ -8,8 +8,12 @@ export const DropdownLoggedIn = ({setDropdown}) => {
 
     useEffect(()=>{
        async function fetchData(){
-        const data = await getUser();
-        data.email ? setUser(data) : handleLogout();
+        try{
+            const data = await getUser();
+            data.email ? setUser(data) : handleLogout();
+        }catch(error){
+            toast.error(error.message, {closeButton:true,position:"bottom-center"}) 
+        }
        }
        fetchData();
     },[])

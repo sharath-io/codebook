@@ -4,6 +4,7 @@ import { Rating } from "../components";
 import { useTitle } from "../hooks/useTitle";
 import { useCart } from "../contexts/CartContext";
 import { getProduct } from "../services";
+import { toast } from "react-toastify";
 
 export const ProductDetail = () => {
   const {cartList,addToCart,removeFromCart} = useCart();
@@ -21,8 +22,12 @@ export const ProductDetail = () => {
 
   useEffect(()=>{
     const getProductDetails =async () =>{
-      const data = await getProduct(id);
+      try{
+        const data = await getProduct(id);
       setProduct(data)
+      } catch(error){
+        toast.error(error.message, {closeButton:true,position:"bottom-center"})
+      }
      }
      getProductDetails();
   },[id])

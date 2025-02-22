@@ -7,6 +7,7 @@ import { FilterBar } from "./components/FilterBar";
 import { useTitle } from "../../hooks/useTitle";
 import { useFilter } from "../../contexts/FilterContext";
 import { getProductList } from "../../services";
+import { toast } from "react-toastify";
 
 export const ProductsList = () => {
   const {products, initialProducts} = useFilter();
@@ -17,8 +18,12 @@ export const ProductsList = () => {
 
   useEffect(()=>{
     const getProducts= async() =>{
-      const data = await getProductList(searchTerm);
-      initialProducts(data);
+      try{
+        const data = await getProductList(searchTerm);
+        initialProducts(data);
+      }catch(error){
+        toast.error(error.message, {closeButton:true,position:"bottom-center"})
+      }
     }
     getProducts();
   },[searchTerm])

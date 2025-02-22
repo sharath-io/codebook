@@ -10,8 +10,12 @@ export const DashboardPage = () => {
 
   useEffect(()=>{
     async function fetchOrders(){  
-      const data = await getUserOrders();
-      setOrders(data)
+      try{
+        const data = await getUserOrders();
+        setOrders(data)
+      }catch(error){
+        toast.error(error.message, {closeButton:true,position:"bottom-center"})
+      }
     }
     fetchOrders();
   },[])

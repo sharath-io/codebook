@@ -15,7 +15,7 @@ export const getUser = async() =>{
           Authorization: `Bearer ${browserData.token}`,
         }
     }
-    const response = await fetch(`http://localhost:8000/600/users/${browserData.cbid}`,requestOptions);
+    const response = await fetch(`${process.env.REACT_APP_HOST}/600/users/${browserData.cbid}`,requestOptions);
     if(!response.ok){
       throw {message:response.statusText, status:response.status}
     }
@@ -32,7 +32,7 @@ export const getUserOrders = async () =>{
       Authorization: `Bearer ${browserData.token}`,
     },
   }
-  const response = await fetch(`http://localhost:8000/660/orders?user.id=${browserData.cbid}`, requestOptions);
+  const response = await fetch(`${process.env.REACT_APP_HOST}/660/orders?user.id=${browserData.cbid}`, requestOptions);
   if(!response.ok){
     throw {message:response.statusText, status:response.status}
   }
@@ -61,7 +61,7 @@ export const createOrder = async (cartList,total,user) =>{
         },
         body: JSON.stringify(order),
       }
-      const response = await fetch("http://localhost:8000/660/orders", requestOptions);
+      const response = await fetch(`${process.env.REACT_APP_HOST}/660/orders`, requestOptions);
       if(!response.ok){
         throw {message:response.statusText, status:response.status}
       }
